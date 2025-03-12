@@ -1,0 +1,17 @@
+services:
+  matlab-api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7020:7020"
+    restart: unless-stopped
+    environment:
+      - MLM_WEB_LICENSE=true
+      - MLM_WEB_USER=${MATLAB_USER}
+      - MLM_WEB_PASS=${MATLAB_PASS}
+    volumes:
+      - matlab-logs:/usr/src/app/logs
+
+volumes:
+  matlab-logs:
